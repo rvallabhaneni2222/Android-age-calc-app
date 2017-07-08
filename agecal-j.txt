@@ -1,0 +1,127 @@
+package pavan.android.app;
+
+import java.util.Calendar;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class AgecalActivity extends Activity implements View.OnClickListener {
+   
+	/** Called when the activity is first created. */
+    EditText mainText1,mainText2,mainText3;
+    Button mainSubmit;
+    int x,z,h,g,s,c;
+	int m;
+	int d;
+	int y;
+	
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+        Main();
+    }
+    public void Main()
+    {
+    	setContentView(R.layout.main);
+    	mainText1=(EditText)findViewById(R.id.editText1);
+    	mainText2=(EditText)findViewById(R.id.editText2);
+    	mainText3=(EditText)findViewById(R.id.editText3);
+		mainSubmit=(Button)findViewById(R.id.button1);
+		mainSubmit.setOnClickListener(this);
+     
+    }
+   
+   
+    public void cal()
+    {
+    	
+    	
+    }
+    public void day()
+    {
+    	int o1900=1,fday,b,lr,nlk,i,j=0,o,w;
+    	int a[]={3,1,3,2,3,2,3,3,2,3,2,3};
+    
+    	
+    	
+    		b=1900-y;
+    		lr=b%4;
+    		nlk=b-lr;
+    		for(i=1;i<m;i++)
+    		{
+    			j+=a[i];
+    		}
+    		fday=o1900+(lr*2)+nlk+d+j;
+    		o=(int)fday/7;
+    		w=fday-o*7;
+    		switch(w)
+    		{
+    		case 1:
+    			Toast.makeText(getBaseContext(),"You have born on MONDAY",Toast.LENGTH_LONG).show();
+    			break;
+    		case 2:
+    			Toast.makeText(getBaseContext(),"You have born on TUESDAY",Toast.LENGTH_LONG).show();
+    			break;
+    		case 3:
+    			Toast.makeText(getBaseContext(),"You have born on WEDNESDAY",Toast.LENGTH_LONG).show();
+    			break;
+    		case 4:
+    			Toast.makeText(getBaseContext(),"You have born on THURSDAY",Toast.LENGTH_LONG).show();
+    			break;
+    		case 5:
+    			Toast.makeText(getBaseContext(),"You have born on FRIDAY",Toast.LENGTH_LONG).show();
+    			break;
+    		case 6:
+    			Toast.makeText(getBaseContext(),"You have born on SATURDAY",Toast.LENGTH_LONG).show();
+    			break;
+    		case 7:
+    			Toast.makeText(getBaseContext(),"You have born on SUNDAY",Toast.LENGTH_LONG).show();
+    			break;
+    		}
+    
+    	
+    }
+    public void onClick(View v)
+    
+	{
+        	
+		
+	    	if(v==mainSubmit)
+	    	
+	    		cal();
+	    	int year= Calendar.getInstance().get(Calendar.YEAR);
+	    	int mon= Calendar.getInstance().get(Calendar.MONTH);
+	    	int day= Calendar.getInstance().get(Calendar.DATE);
+	    	y=Integer.parseInt(mainText3.getText().toString());
+			m=Integer.parseInt(mainText2.getText().toString());
+			d=Integer.parseInt(mainText1.getText().toString()); 
+	    	if((year>y)&&(m<=12))
+			{
+				c=year-y-1;
+				Toast.makeText(getBaseContext()," your age in years.... " +c,Toast.LENGTH_LONG).show();
+				x=((c*12)+mon)-m;
+				Toast.makeText(getBaseContext()," your age in months.... " +x ,Toast.LENGTH_LONG).show();
+				z=(c*365);
+				Toast.makeText(getBaseContext()," your age in days.... " +z,Toast.LENGTH_LONG).show(); 
+				h=z*24;
+				Toast.makeText(getBaseContext()," your age in hours.... " +h,Toast.LENGTH_LONG).show();
+				g=h*60;
+				Toast.makeText(getBaseContext()," your age in minutes.... " +g,Toast.LENGTH_LONG).show();
+				s=g*60;
+				Toast.makeText(getBaseContext()," your age in seconds.... " +s ,Toast.LENGTH_LONG).show();
+				day();
+				
+		    	}  
+	    	else
+	    	{
+	    		Toast.makeText(getBaseContext(),"please enter correct DOB....",Toast.LENGTH_LONG).show();
+	    		Main();
+	    		
+	    	}
+	}
+   
+}
